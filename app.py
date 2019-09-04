@@ -1,5 +1,7 @@
 import random
 
+secret_list = []
+
 
 def load_word():
     '''
@@ -41,13 +43,15 @@ def get_guessed_word(secret_word, letters_guessed):
     Returns: 
         string: letters and underscores.  For letters in the word that the user has guessed correctly, the string should contain the letter at the correct position.  For letters in the word that the user has not yet guessed, shown an _ (underscore) instead.
     '''
-    for i in secret_word:
-        if i == letters_guessed:
-            print(i)
-        else:
-            print("_")
 
-    pass
+    # Creates a hidden list to compare to user's list.
+    for letter in secret_word:
+        if secret_list == []:
+            secret_list.append(letter)
+        elif letter in letters_guessed:
+            pass
+
+    return secret_list
 
 
 def is_guess_in_word(guess, secret_word):
@@ -59,12 +63,14 @@ def is_guess_in_word(guess, secret_word):
     Returns:
         bool: True if the guess is in the secret_word, False otherwise
     '''
-    guess = input("Guess a letter for our Spaceman")
+
     if guess in secret_word:
         print(f"{guess} is correct!")
+        is_guess_in_word == True
     else:
         print(f"{guess} is incorrect! Try again!")
-        pass
+        is_guess_in_word == False
+    pass
 
 
 def spaceman(secret_word):
@@ -73,14 +79,15 @@ def spaceman(secret_word):
     Args:
       secret_word (string): the secret word to guess.
     '''
-
+    running = True
+    while running:
+        print(secret_word)
+        guess = input("Guess a letter for our Spaceman")
+        get_guessed_word(secret_word, guess)
+        is_guess_in_word(guess, secret_word)
     # TODO: show the player information about the game according to the project spec
 
     # TODO: Ask the player to guess one letter per round and check that it is only one letter
-
-    # TODO: Check if the guessed letter is in the secret or not and give the player feedback
-
-    # TODO: show the guessed word so far
 
     # TODO: check if the game has been won or lost
 
@@ -88,7 +95,7 @@ def spaceman(secret_word):
 def test():
     secret_word = load_word()
     print(secret_word)
-    is_word_guessed(secret_word, 'o')
+    is_guess_in_word("s", secret_word)
 
 
 test()
