@@ -1,6 +1,7 @@
 import random
 
 secret_list = []
+user_list = []
 
 
 def load_word():
@@ -31,6 +32,7 @@ def is_word_guessed(secret_word, letters_guessed):
     if letters_guessed == secret_word:
         secret_word = True
     else:
+        secret_word = False
         pass
 
 
@@ -46,12 +48,14 @@ def get_guessed_word(secret_word, letters_guessed):
 
     # Creates a hidden list to compare to user's list.
     for letter in secret_word:
-        if secret_list == []:
+        if letter == letters_guessed:
+            print(letter)
             secret_list.append(letter)
-        elif letter in letters_guessed:
-            pass
-
-    return secret_list
+            print(secret_list)
+            
+        else:
+            print("_")
+    return
 
 
 def is_guess_in_word(guess, secret_word):
@@ -93,9 +97,12 @@ def spaceman(secret_word):
 
 
 def test():
+    guess = "e"
     secret_word = load_word()
     print(secret_word)
-    is_guess_in_word("s", secret_word)
+    get_guessed_word(secret_word, guess)
+    is_guess_in_word(guess, secret_word)
 
 
-test()
+# test()
+spaceman(load_word())
