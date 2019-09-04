@@ -49,12 +49,13 @@ def get_guessed_word(secret_word, letters_guessed):
     # Creates a hidden list to compare to user's list.
     for letter in secret_word:
         if letter == letters_guessed:
-            print(letter)
+            user_list.append(letter)
             secret_list.append(letter)
-            print(secret_list)
-            
+            print(letter)
+
         else:
             print("_")
+
     return
 
 
