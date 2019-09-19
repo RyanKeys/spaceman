@@ -1,4 +1,5 @@
 import random
+import unittest
 
 
 def load_word():
@@ -27,9 +28,9 @@ def is_word_guessed(secret_word, letters_guessed):
         bool: True only if all the letters of secret_word are in letters_guessed, False otherwise
     '''
     if letters_guessed == secret_word:
-        secret_word = True
+        return True
     else:
-        secret_word = False
+        return False
         pass
 
 
@@ -82,21 +83,23 @@ def spaceman(secret_word):
     running = True
     while running == True:
         print(f"You have {life} guesses remaining")
-        print(secret_word)
         print(get_guessed_word(secret_word, letters_guessed))
         guess = input("Guess a letter: ")
         letters_guessed.append(guess)
         if is_guess_in_word(guess, secret_word) is False:
             life -= 1
         if life == 0:
-            print(f'Sorry, you lose. Your word was: {secret_word}')
+            print(f'Sorry, you lose. Your word was {secret_word}')
             break
 
 
 def test():
-    get_guessed_word(secret_word, 'a')
+    assert is_guess_in_word("a", secret_word) == True
+    assert len(get_guessed_word(secret_word, "a")) != 1
+    assert is_word_guessed(secret_word, secret_word) == True
 
 
-# test()
 secret_word = load_word()
-spaceman(secret_word)
+print(secret_word)
+test()
+# spaceman(secret_word)
